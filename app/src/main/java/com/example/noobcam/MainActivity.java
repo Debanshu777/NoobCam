@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         Parameters parameters;
         parameters=camera.getParameters();
         camera.setDisplayOrientation(90);
-        parameters.setPreviewFrameRate(45);
+        parameters.setPreviewFrameRate(30);
         parameters.setFocusMode(Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
 
         Camera.Size bestsize=null;
