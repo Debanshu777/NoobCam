@@ -43,9 +43,10 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
             ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.CAMERA},CAMERA_REQUEST_CODE);
         }
         else {
-            surfaceHolder.addCallback(this);
-            surfaceHolder.setType(surfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
         }
+       surfaceHolder.addCallback(this);
+        surfaceHolder.setType(surfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         capture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,19 +72,6 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         camera.setDisplayOrientation(90);
         parameters.setPreviewFrameRate(30);
         parameters.setFocusMode(Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-
-        Camera.Size bestsize=null;
-        List<Camera.Size> sizeList=camera.getParameters().getSupportedPreviewSizes();
-        bestsize=sizeList.get(0);
-        for(int i=1;i<sizeList.size();i++)
-        {
-            if((sizeList.get(i).width*sizeList.get(i).height)>(bestsize.width*bestsize.height))
-            {
-                bestsize=sizeList.get(i);
-            }
-        }
-        parameters.setPreviewSize(bestsize.width,bestsize.height);
-        camera.setParameters(parameters);
 
         try {
             camera.setPreviewDisplay(surfaceHolder);

@@ -9,19 +9,21 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 public class ShowPicActivity extends AppCompatActivity {
+    Bitmap decodeBitmap;
+    ImageView preview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_pic);
         Bundle extras=getIntent().getExtras();
+        preview=findViewById(R.id.preview);
         byte[] b=extras.getByteArray("capture");
         if(b!=null)
         {
-            ImageView image=findViewById(R.id.preview);
-            Bitmap decodeBitmap= BitmapFactory.decodeByteArray(b,0,b.length);
+            decodeBitmap= BitmapFactory.decodeByteArray(b,0,b.length);
             Bitmap rotateBitmap=bitmaprotate(decodeBitmap);
-            image.setImageBitmap(decodeBitmap);
+            preview.setImageBitmap(rotateBitmap);
         }
     }
 
